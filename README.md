@@ -7,7 +7,7 @@ an [egui](https://www.egui.rs/) UI overlay.
 
 > If you're looking for a Vulkan example, check out [the vulkan-example repo](https://github.com/matthewjberger/vulkan-example)
 >
-> If you're looking for a Wgpu example, check out [the vulkan-example repo](https://github.com/matthewjberger/wgpu-example)
+> If you're looking for a Wgpu example, check out [the wgpu-example repo](https://github.com/matthewjberger/wgpu-example)
 
 <img width="802" height="632" alt="opengl" src="https://github.com/user-attachments/assets/c0ca2ede-6c24-4587-8293-c31e43dc55f2" />
 
