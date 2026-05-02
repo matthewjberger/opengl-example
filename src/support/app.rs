@@ -30,7 +30,7 @@ pub trait App {
     fn render(&mut self, _time: f32) -> Result<()> {
         Ok(())
     }
-    fn render_ui(&mut self, _ctx: &egui::Context) -> Result<()> {
+    fn render_ui(&mut self, _ui: &mut egui::Ui) -> Result<()> {
         Ok(())
     }
     fn cleanup(&mut self) -> Result<()> {
@@ -244,19 +244,17 @@ impl ApplicationHandler for AppRunner {
                 }
 
                 let raw_input = egui_state.take_egui_input(window);
-                egui_ctx.begin_pass(raw_input);
-
-                if let Err(error) = self.app.render_ui(egui_ctx) {
-                    eprintln!("UI render error: {}", error);
-                }
-
                 let egui::FullOutput {
                     platform_output,
                     textures_delta,
                     shapes,
                     pixels_per_point,
                     ..
-                } = egui_ctx.end_pass();
+                } = egui_ctx.run_ui(raw_input, |ui| {
+                    if let Err(error) = self.app.render_ui(ui) {
+                        eprintln!("UI render error: {}", error);
+                    }
+                });
 
                 egui_state.handle_platform_output(window, platform_output);
 

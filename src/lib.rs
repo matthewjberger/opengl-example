@@ -205,8 +205,8 @@ impl App for TriangleApp {
         Ok(())
     }
 
-    fn render_ui(&mut self, ctx: &egui::Context) -> Result<()> {
-        egui::TopBottomPanel::top("top").show(ctx, |ui| {
+    fn render_ui(&mut self, ui: &mut egui::Ui) -> Result<()> {
+        egui::Panel::top("top").show_inside(ui, |ui| {
             ui.horizontal(|ui| {
                 MenuBar::new().ui(ui, |ui| {
                     ui.menu_button("File", |ui| {
@@ -246,15 +246,15 @@ impl App for TriangleApp {
             });
         });
 
-        egui::SidePanel::left("left").show(ctx, |ui| {
+        egui::Panel::left("left").show_inside(ui, |ui| {
             ui.heading("Scene Tree");
         });
 
-        egui::SidePanel::right("right").show(ctx, |ui| {
+        egui::Panel::right("right").show_inside(ui, |ui| {
             ui.heading("Inspector");
         });
 
-        egui::TopBottomPanel::bottom("Console").show(ctx, |ui| {
+        egui::Panel::bottom("Console").show_inside(ui, |ui| {
             ui.heading("Console");
         });
 
